@@ -1,0 +1,71 @@
+1.  GET /users/listAllUser
+=> List all user
+
+2.  GET /users
+- body  (raw) { username }
+=> Get user by name
+
+3.	POST /users/register
+- body  (raw) { username,  password }
+=> Register user
+
+4.	POST /users/login
+- body  (raw) { username,  password }
+=> Login user
+
+5.  DELETE /users
+- body  (raw) { username }
+=> Delete user by name
+
+6.  PUT /users
+- body  (raw) { id, username,  password }
+=> Update user by id
+
+7.	POST /songs/upload_music
+- body (form-data) { key, value }
+=> Upload song
+
+8.	POST /songs/download_music
+- body  (raw) { musicID }
+=> Download song
+
+9.  GET /songs/listAllSong
+=> Get all song 
+
+10.  GET /songs/:id
+=> Get song by id
+
+11.  DELETE /songs/:id
+=> Delete song by id
+
+12.	PUT /songs/setPrivacy
+- body (raw) { id, isPrivate  }
+=> Set privacy of album
+
+13.  GET /songs/countNumOfTime
+=> Đếm số lần phát của song
+
+14.  GET /albums
+=> Get album by name
+
+15.  GET /albums/listAllAlbum
+=> List all albums
+
+16.	POST /albums
+- body  (raw) { name }
+=> Create album
+
+17.	POST /albums/:albumID/songs/:songID
+=> Thêm song (tương ứng songID) vào album (tương ứng albumID)
+
+18.  DELETE /albums/:albumID
+=> Delete album by id
+
+19.  DELETE /albums/:albumID/songs/:songID
+=> Delete song in album by id
+
+20.	PUT /albums/setPrivacy
+- body (raw) { id, isPrivate  }
+=> Set privacy of album
+
+
