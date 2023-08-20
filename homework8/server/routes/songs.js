@@ -38,8 +38,13 @@ router.post('/download_music', async (req, res) => {
             id: songID,
         }
     })
-    console.log(song.pathSong)
-    res.json(MessageResponse(`Link file music: ${song.pathSong}`))
+    if (song.isPrivate == true) {
+        res.json(MessageResponse('The song is block by user'))
+    } else {
+        res.json(MessageResponse(`Link file music: ${song.pathSong}`))
+    }
+    // res.download(song.pathSong)
+
 })
 
 // Function 9: Get all song 
@@ -111,7 +116,7 @@ router.put('/setPrivacy', requireRole('user'), async (req, res) => {
 })
 
 // Function 13: Count music plays
-router.get('/:id/countNumOfTime', async (req,res) => {
+router.get('/:id/countNumOfTime', async (req, res) => {
     const songID = parseInt(req.params.id)
     const song = await Song.findOne({
         where: {

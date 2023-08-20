@@ -31,7 +31,8 @@ router.post('/register', async (req, res) => {
         const hashPass = await bcrypt.hash(userData.password, 10)
         const user = await User.create({
             username: userData.username,
-            password: hashPass
+            password: hashPass,
+            role: userData.role
         })
         console.log(user)
         res.json(DataResponse(user))
@@ -94,11 +95,11 @@ router.delete('/', requireRole('admin'), async (req, res) => {
 // Function 6: Update user by name
 router.put('/', requireRole('user'), async (req, res) => {
     const userUp = req.body
-    const name = userUp.name
+    const name = userUp.username
 
     const check = await User.update(userUp, {
         where: {
-            name: name,
+            username: name,
         }
     })
     if (check[0] === 0) { 
