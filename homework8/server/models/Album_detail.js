@@ -25,8 +25,8 @@ const Album_detail = sequelize.define(tableName, {
     },
 })
 
-// Album.hasMany(Album_detail)
-// Album_detail.belongsTo(Album)
+Album.hasMany(Album_detail)
+Album_detail.belongsTo(Album)
 
 sequelize.sync().then(() => {
     console.log(`${tableName} table created successfully`)
