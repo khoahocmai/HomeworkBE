@@ -53,10 +53,10 @@ router.post('/login', async (req, res) => {
     if (user != null) {
         const isMatchPass = await bcrypt.compare(userData.password, user.password)
         if (isMatchPass) {
-            const payload = { 
-                username: user.username, 
-                role: user.role, 
-                id: user.id 
+            const payload = {
+                username: user.username,
+                role: user.role,
+                id: user.id
             }
             const token = jwt.sign(payload, process.env.SECRET, {
                 expiresIn: '3h'
@@ -102,7 +102,7 @@ router.put('/', requireRole('user'), async (req, res) => {
             username: name,
         }
     })
-    if (check[0] === 0) { 
+    if (check[0] === 0) {
         res.json(NotFoundResponse())
     } else {
         res.json(MessageResponse('User updated'))

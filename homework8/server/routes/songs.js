@@ -13,7 +13,7 @@ router.post('/upload_music', requireRole('user'), fileUpload(), async (req, res)
     const musican = req.body.musican
     const music = req.files.music
 
-    const savePath = `./public/music/${name}`
+    const savePath = `./public/music/${name}_${Date.now()}`
     music.mv(savePath)
     try {
         const song = await Song.create({
@@ -41,7 +41,8 @@ router.post('/download_music', async (req, res) => {
     if (song.isPrivate == true) {
         res.json(MessageResponse('The song is block by user'))
     } else {
-        res.json(MessageResponse(`Link file music: ${song.pathSong}`))
+        // res.json(MessageResponse(`Link file music: ${song.pathSong}`))
+        res.sendFile(song.pathSong)
     }
     // res.download(song.pathSong)
 
